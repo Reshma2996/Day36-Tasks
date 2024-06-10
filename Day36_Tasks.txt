@@ -1,0 +1,334 @@
+switched to db fsd56wd
+fsd56wd> db.dbzenclass.aggregate([
+...     {
+...         $match: {
+...             "topic.date": { $regex: "^2024-10" }  // Matches topics in October
+...         }
+...     },
+...     {
+...         $unwind: "$topic"
+...     },
+...     {
+...         $match: {
+...             "topic.date": { $regex: "^2024-10" }  // Matches topics in October
+...         }
+...     },
+...     {
+...         $project: {
+...             _id: 0,
+...             "topic.date": 1,
+...             "topic.topic": 1
+...         }
+...     },
+...     {
+...         $group: {
+...             _id: null,
+...             topics: { $push: "$topic" }
+...         }
+...     }
+... ]);
+[
+  {
+    _id: null,
+    topics: [
+      { date: '2024-10-15', topic: 'JS' },
+      { date: '2024-10-16', topic: 'CSS' },
+      { date: '2024-10-17', topic: 'HTML' },
+      { date: '2024-10-18', topic: 'REACT' },
+      { date: '2024-10-19', topic: 'JS' },
+      { date: '2024-10-20', topic: 'NODEJS' },
+      { date: '2024-10-21', topic: 'SQL' },
+      { date: '2024-10-22', topic: 'MONGODB' },
+      { date: '2024-10-23', topic: 'AWS' },
+      { date: '2024-10-24', topic: 'DS' },
+      { date: '2024-10-25', topic: 'AL' },
+      { date: '2024-10-15', topic: 'JS' },
+      { date: '2024-10-16', topic: 'CSS' },
+      { date: '2024-10-17', topic: 'HTML' },
+      { date: '2024-10-18', topic: 'REACT' },
+      { date: '2024-10-19', topic: 'JS' },
+      { date: '2024-10-20', topic: 'NODEJS' },
+      { date: '2024-10-21', topic: 'SQL' },
+      { date: '2024-10-22', topic: 'MONGODB' },
+      { date: '2024-10-23', topic: 'AWS' },
+      { date: '2024-10-24', topic: 'DS' },
+      { date: '2024-10-25', topic: 'AL' }
+    ]
+  }
+]
+fsd56wd>
+
+fsd56wd> db.dbzenclass.aggregate([
+...     {
+...         $match: {
+...             "task.date": { $regex: "^2024-10" }  // Matches tasks in October
+...         }
+...     },
+...     {
+...         $unwind: "$task"
+...     },
+...     {
+...         $match: {
+...             "task.date": { $regex: "^2024-10" }  // Matches tasks in October
+...         }
+...     },
+...     {
+...         $project: {
+...             _id: 0,
+...             "task.date": 1,
+...             "task.task": 1
+...         }
+...     },
+...     {
+...         $group: {
+...             _id: null,
+...             tasks: { $push: "$task" }
+...         }
+...     }
+... ]);
+[
+  {
+    _id: null,
+    tasks: [
+      { date: '2024-10-15', task: true },
+      { date: '2024-10-16', task: true },
+      { date: '2024-10-17', task: true },
+      { date: '2024-10-18', task: true },
+      { date: '2024-10-19', task: true },
+      { date: '2024-10-20', task: true },
+      { date: '2024-10-21', task: true },
+      { date: '2024-10-22', task: true },
+      { date: '2024-10-23', task: true },
+      { date: '2024-10-24', task: true },
+      { date: '2024-10-25', task: true },
+      { date: '2024-10-15', task: true },
+      { date: '2024-10-16', task: true },
+      { date: '2024-10-17', task: true },
+      { date: '2024-10-18', task: true },
+      { date: '2024-10-19', task: true },
+      { date: '2024-10-20', task: true },
+      { date: '2024-10-21', task: true },
+      { date: '2024-10-22', task: true },
+      { date: '2024-10-23', task: true },
+      { date: '2024-10-24', task: true },
+      { date: '2024-10-25', task: true }
+    ]
+  }
+]
+fsd56wd> db.dbzenclass.aggregate([
+...     {
+...         $match: {
+...             "placement_drives.date": {
+...                 $gte: "2024-10-15",
+...                 $lte: "2024-10-31"
+...             }
+...         }
+...     },
+...     {
+...         $unwind: "$placement_drives"
+...     },
+...     {
+...         $match: {
+...             "placement_drives.date": {
+...                 $gte: "2024-10-15",
+...                 $lte: "2024-10-31"
+...             }
+...         }
+...     },
+...     {
+...         $project: {
+...             _id: 0,
+...             "placement_drives.date": 1,
+...             "placement_drives.name": 1
+...         }
+...     }
+... ]);
+[
+  { placement_drives: { date: '2024-10-17', name: 'flipkart' } },
+  { placement_drives: { date: '2024-10-18', name: 'paypal' } },
+  { placement_drives: { date: '2024-10-19', name: 'IBM' } },
+  { placement_drives: { date: '2024-10-20', name: 'snapdeal' } },
+  { placement_drives: { date: '2024-10-21', name: 'power' } },
+  { placement_drives: { date: '2024-10-22', name: 'onesolution' } },
+  { placement_drives: { date: '2024-10-23', name: 'codingmart' } },
+  { placement_drives: { date: '2024-10-24', name: 'CTS' } },
+  { placement_drives: { date: '2024-10-17', name: 'flipkart' } },
+  { placement_drives: { date: '2024-10-18', name: 'paypal' } },
+  { placement_drives: { date: '2024-10-19', name: 'IBM' } },
+  { placement_drives: { date: '2024-10-20', name: 'snapdeal' } },
+  { placement_drives: { date: '2024-10-21', name: 'power' } },
+  { placement_drives: { date: '2024-10-22', name: 'onesolution' } },
+  { placement_drives: { date: '2024-10-23', name: 'codingmart' } },
+  { placement_drives: { date: '2024-10-24', name: 'CTS' } }
+]
+fsd56wd> db.dbzenclass.aggregate([
+...     {
+...         $unwind: "$placement_drives"
+...     },
+...     {
+...         $project: {
+...             _id: 0,
+...             student: "$name",
+...             company_drive: "$placement_drives.name",
+...             result: "$placement_drives.result"
+...         }
+...     }
+... ]);
+[
+  {
+    student: 'Student 1',
+    company_drive: 'zoho',
+    result: 'Not-selected'
+  },
+  {
+    student: 'Student 1',
+    company_drive: 'amazon',
+    result: 'Not-selected'
+  },
+  {
+    student: 'Student 1',
+    company_drive: 'flipkart',
+    result: 'Selected'
+  },
+  {
+    student: 'Student 1',
+    company_drive: 'paypal',
+    result: 'Not-selected'
+  },
+  { student: 'Student 1', company_drive: 'IBM', result: 'selected' },
+  {
+    student: 'Student 1',
+    company_drive: 'snapdeal',
+    result: 'Not-selected'
+  },
+  {
+    student: 'Student 1',
+    company_drive: 'power',
+    result: 'Not-selected'
+  },
+  {
+    student: 'Student 1',
+    company_drive: 'onesolution',
+    result: 'Not-selected'
+  },
+  {
+    student: 'Student 1',
+    company_drive: 'codingmart',
+    result: 'selected'
+  },
+  {
+    student: 'Student 1',
+    company_drive: 'CTS',
+    result: 'Not-selected'
+  },
+  {
+    student: 'Student 1',
+    company_drive: 'infosys',
+    result: 'Not-selected'
+  },
+  {
+    student: 'Student 2',
+    company_drive: 'zoho',
+    result: 'Not-selected'
+  },
+  {
+    student: 'Student 2',
+    company_drive: 'amazon',
+    result: 'Not-selected'
+  },
+  {
+    student: 'Student 2',
+    company_drive: 'flipkart',
+    result: 'Selected'
+  },
+  {
+    student: 'Student 2',
+    company_drive: 'paypal',
+    result: 'Not-selected'
+  },
+  { student: 'Student 2', company_drive: 'IBM', result: 'selected' },
+  {
+    student: 'Student 2',
+    company_drive: 'snapdeal',
+    result: 'Not-selected'
+  },
+  {
+    student: 'Student 2',
+    company_drive: 'power',
+    result: 'Not-selected'
+  },
+  {
+    student: 'Student 2',
+    company_drive: 'onesolution',
+    result: 'Not-selected'
+  },
+  {
+    student: 'Student 2',
+    company_drive: 'codingmart',
+    result: 'selected'
+  }
+]
+Type "it" for more
+fsd56wd> it
+[
+  {
+    student: 'Student 2',
+    company_drive: 'CTS',
+    result: 'Not-selected'
+  },
+  {
+    student: 'Student 2',
+    company_drive: 'infosys',
+    result: 'Not-selected'
+  }
+]
+fsd56wd> db.dbzenclass.aggregate([
+...     {
+...         $group: {
+...             _id: "$name",
+...             total_problems_solved: { $sum: "$codekata" }
+...         }
+...     }
+... ]);
+[
+  { _id: 'Student 1', total_problems_solved: 15 },
+  { _id: 'Student 2', total_problems_solved: 50 }
+]
+fsd56wd> db.mentors.aggregate([
+...     {
+...         $project: {
+...             mentor: "$name",
+...             mentee_count: { $size: "$mentees" }
+...         }
+...     },
+...     {
+...         $match: {
+...             mentee_count: { $gt: 15 }
+...         }
+...     }
+... ]);
+
+fsd56wd> db.dbzenclass.aggregate([
+...     {
+...         $match: {
+...             "attendance.date": {
+...                 $gte: "2024-10-15",
+...                 $lte: "2024-10-31"
+...             },
+...             "attendance.status": "A",
+...             "task.date": {
+...                 $gte: "2024-10-15",
+...                 $lte: "2024-10-31"
+...             },
+...             "task.task": false
+...         }
+...     },
+...     {
+...         $group: {
+...             _id: "$name",
+...             count: { $sum: 1 }
+...         }
+...     }
+... ]);
+
+fsd56wd>
